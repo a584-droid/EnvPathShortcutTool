@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pathindex"
+version = "0.1.0"
+description = "Path alias and keyword search tool"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name = "Path Index"}]
+
+[project.scripts]
+pathi = "pathindex.cli:main"
+
+[tool.setuptools]
+packages = ["pathindex"]
