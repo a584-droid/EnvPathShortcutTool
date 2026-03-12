@@ -128,6 +128,9 @@ def cmd_alias_add(args: argparse.Namespace) -> int:
     if not Path(p).is_absolute():
         print("Alias path must be absolute")
         return 2
+    if not Path(p).is_dir():
+        print("Alias path must point to an existing directory")
+        return 2
     aliases[args.name] = p
     save_aliases(alias_file, aliases)
     print(f"Added alias {args.name} -> {p}")
