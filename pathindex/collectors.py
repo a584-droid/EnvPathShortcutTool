@@ -10,7 +10,7 @@ def path_like(value: str) -> bool:
     if not value:
         return False
     p = Path(value).expanduser()
-    return p.is_absolute() and p.exists()
+    return p.is_absolute() and p.is_dir()
 
 
 def keywords_for(path: str, name: str) -> str:
@@ -45,6 +45,6 @@ def collect_alias_entries(aliases: dict[str, str]) -> list[IndexEntry]:
     entries: list[IndexEntry] = []
     for name, raw in aliases.items():
         p = str(Path(raw).expanduser())
-        if Path(p).is_absolute() and Path(p).exists():
+        if Path(p).is_absolute() and Path(p).is_dir():
             entries.append(IndexEntry(name, str(Path(p).resolve()), keywords_for(p, name), "alias"))
     return entries
