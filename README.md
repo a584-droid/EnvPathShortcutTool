@@ -20,6 +20,35 @@ source .venv/bin/activate
 pip install -e .
 ```
 
+## Установка через pipx (глобальная команда `pathi`)
+
+Если нужно, чтобы `pathi` была доступна глобально (вне конкретного venv), используйте `pipx`:
+
+```bash
+python3 -m pip install --user pipx
+python3 -m pipx ensurepath
+# перезапустите терминал
+pipx install /полный/путь/к/EnvPathShortcutTool
+```
+
+Пример для вашего случая:
+
+```bash
+pipx install ~/Sources/EnvPathShortcutTool-main
+```
+
+Обновить установленную версию после `git pull`:
+
+```bash
+pipx upgrade pathindex
+```
+
+Удалить:
+
+```bash
+pipx uninstall pathindex
+```
+
 ## Использование
 
 ```bash
@@ -28,7 +57,26 @@ pathi search conf
 pathi pseudo /home/user/.config/nvim
 pathi alias add projects /home/user/projects
 pathi open nvim
+pathi env sync --source alias --normalize --file ~/.config/pathi/environment --rebuild
 ```
+
+### Экспорт индекса в переменные окружения
+
+Чтобы превращать записи индекса в переменные среды (например, для быстрого доступа к `$STEAM`),
+используйте:
+
+```bash
+pathi env sync --source alias --normalize --print-only
+```
+
+Для записи в файл окружения:
+
+```bash
+pathi env sync --source alias --normalize --file /etc/environment
+```
+
+> Для `/etc/environment` обычно требуются права root (запуск через `sudo`).
+> В файл добавляется/обновляется только блок, помеченный как `pathi managed`.
 
 ## Хранилище
 
