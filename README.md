@@ -23,48 +23,7 @@ pip install -e .
 
 ## Установка через pipx (глобальная команда `pathi`)
 
-< codex/fix-pip-install-e-installation-issue-omaxnc
-Если нужно, чтобы `pathi` была доступна глобально (вне конкретного venv), используйте `pipx`.
-
-На дистрибутивах с PEP 668 (например, Arch) команда
-`python3 -m pip install --user pipx` может падать с `externally-managed-environment`.
-В этом случае сначала установите `pipx` через пакетный менеджер:
-
-```bash
-# Arch
-sudo pacman -S python-pipx
-
-# Debian/Ubuntu
-sudo apt install pipx
-
-# Fedora
-sudo dnf install pipx
-```
-
-После этого:
-
-```bash
-pipx ensurepath
-# перезапустите терминал
-pipx install /полный/путь/к/EnvPathShortcutTool
-```
-
-Если `pipx` всё ещё не установлен и у вас НЕ PEP668-окружение, можно использовать fallback:
-=
-Если нужно, чтобы `pathi` была доступна глобально (вне конкретного venv), используйте `pipx`:
-> main
-
-```bash
-python3 -m pip install --user pipx
-python3 -m pipx ensurepath
-< codex/fix-pip-install-e-installation-issue-omaxnc
-=
-# перезапустите терминал
-pipx install /полный/путь/к/EnvPathShortcutTool
-> main
-```
-
-Пример для вашего случая:
+Пример:
 
 ```bash
 pipx install ~/Sources/EnvPathShortcutTool-main
